@@ -1,13 +1,12 @@
 /*
-by wisemonkey
-Date: 2018
+Name: p5-setup
+Author: Wisemonkey
+Date: 20180103
 */
 function setup() {
-createCanvas(600,400);
-background(50);
+	createCanvas(600,400);
+	background(50);
 }
 
 function draw() {
 }
-
-

@@ -26,7 +26,11 @@
   "author": "wisemonkey",
   "license": "ISC",
   "dependencies": {
+    "download": "^6.2.5",
+    "mkdirp": "^0.5.1",
+    "node-datetime": "^2.0.3",
     "opn": "^5.1.0",
+    "prompt": "^1.0.0",
     "wise-helper": "^2.4.3"
   }
 }
