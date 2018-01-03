@@ -7,8 +7,13 @@ from the terminal
 
 by wisemonkey
 180103
+
+NOTES
+https://www.npmjs.com/package/p5-manager
 */
 
 require("wise-helper");
+var open = require('opn');
 
+open('index.html');
 

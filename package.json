@@ -1,0 +1,32 @@
+{
+  "name": "p5-setup",
+  "version": "1.0.0",
+  "description": "make it easy to setup & run  p5.js  projects",
+  "main": "setup.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "node setup.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "TODO"
+  },
+  "keywords": [
+    "p5.js",
+    "p5js",
+    "p5",
+    "generator",
+    "setup",
+    "init",
+    "web",
+    "framework"
+  ],
+  "author": "wisemonkey",
+  "license": "ISC",
+  "dependencies": {
+    "opn": "^5.1.0",
+    "wise-helper": "^2.4.3"
+  }
+}
