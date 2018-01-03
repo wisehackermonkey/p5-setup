@@ -8,6 +8,10 @@ from the terminal
 by wisemonkey
 180103
 
+TODO
+make prompt not have "prompt: name:"
+make program global
+
 NOTES
 https://www.npmjs.com/package/p5-manager
 */
@@ -34,7 +38,19 @@ var LIBRARY_FOLDER = 'lib';
 var sketch_name = 'sketch.js';
 var html_name = 'index.html';
 
+var Author = 'wisemonkey';
 
+
+function file(text, filename){
+	// Write file with nodejs
+	//http://www.daveeddy.com/2013/03/26/synchronous-file-io-in-nodejs/
+	//https://stackoverflow.com/questions/2496710/writing-files-in-node-js#2497040
+	fs.writeFileSync( filename,  text, function(err){
+		if(err){
+			return print(err);
+		}
+	} );
+}
 
 
 
@@ -42,6 +58,8 @@ var html_name = 'index.html';
 
 
 prompt.start();
+print(`P5.js Project Generator
+Please enter the name of your project so i can build it.`);
 prompt.get(['name'], function (err, result) {
 
 	var name = result.name;
@@ -49,7 +67,7 @@ prompt.get(['name'], function (err, result) {
 
 var sketch = `/*
 Name: ${name}
-Author: Wisemonkey
+Author: ${Author}
 Date: ${date}
 */
 function setup() {
@@ -71,6 +89,11 @@ var html = `<html>
 </html>
 `;
 
+var readme = `# ${name}
+## Author: ${Author}
+Date: ${date}
+`;
+
 
 	//make directory node.js
 	//http://stackoverflow.com/questions/13696148/ddg#13696975
@@ -80,23 +103,12 @@ var html = `<html>
 	});
 
 	download(VERSION_P5JS, LIBRARY_FOLDER).then(() => {
-	    console.log('done!');
+	    console.log('Download of P5.js library [DONE]');
 	});
 
-	// Write file with nodejs
-	//http://www.daveeddy.com/2013/03/26/synchronous-file-io-in-nodejs/
-	//https://stackoverflow.com/questions/2496710/writing-files-in-node-js#2497040
-	fs.writeFileSync(html_name, html, function(err){
-		if(err){
-			return print(err);
-		}
-	} );
-
-	fs.writeFileSync(sketch_name, sketch, function(err){
-		if(err){
-			return print(err);
-		}
-	} );
+	file(readme , 'README.md');
+	file( html  , html_name  );
+	file( sketch, sketch_name);
 
 	open('sketch.js');
 	open('index.html');

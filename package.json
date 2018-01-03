@@ -7,7 +7,9 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "node setup.js"
+    "test": "node setup.js",
+    "setup": "node setup.js"
+
   },
   "repository": {
     "type": "git",
