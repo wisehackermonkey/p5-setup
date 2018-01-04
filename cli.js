@@ -13,9 +13,9 @@ by wisemonkey
 LINKs
 
 // https://stackoverflow.com/questions/38182501/how-to-get-current-datetime-with-format-y-m-d-hms-using-node-datetime-library#38182551
-//https://www.npmjs.com/package/download
-//https://www.npmjs.com/package/prompt
-//https://stackoverflow.com/questions/17837147/user-input-in-node-js
+// https://www.npmjs.com/package/download
+// https://www.npmjs.com/package/prompt
+// https://stackoverflow.com/questions/17837147/user-input-in-node-js
 // https://www.npmjs.com/package/prompt
 --------------------
 
@@ -24,7 +24,10 @@ TODO
 ----------------
 cli add flags
 cli add help flags
-cli add change to create folder vs inside of new folder
+
+180103
+xcli add change to create folder vs inside of new folder
+
 cli config file "username"
 
 unit testing
@@ -61,52 +64,57 @@ var WELCOME_MESSAGE = `P5.js Project Generator
 Please enter the name of your project to be generated`;
 
 
+//variables for holding the code templates
+//that will be writen to files EI sketch.js etc
 var sketch = "";
-
 var html = "";
-
 var readme = "";
 
+//get the user input from the console
+//ex: p5js AWESOME_PROJECT
+//console_input now equal "AWESOME_PROJECT"
+const [,, ...console_input] = process.argv
 
-const [,, ...args] = process.argv
-
-if(args.length === 0)
+//Ask the user for a project name if not provided
+if(console_input.length === 0)
 {
 	prompt.start();
-	prompt.get(['name'], function (err, result) {
-		var projectName = result.name;
-
-		set_paths(projectName);
-		set_template(projectName);
-		setup_project(projectName);
+	//
+	prompt.get(['name'], function (err, project) {
+		setup_project(project.name);
 	});
 }else{
-	console.log(`Project Name: ${args}`);
-	set_paths(args);
-	set_template(args);
-	setup_project(args);
+	setup_project(console_input);
 }
 
-function setup_project(dir)
+//the main part of the program
+//it takes in the project name
+//and generates the correct project path given the project name
+//creates a project directory
+//downloads p5.js library and stores in the folder <PROJECTNAME>/lib
+//creates files, for sketch.js, readme.md, index.html, and populates
+//them with default examples to get started.
+//finaly it opens chrome window with the project's index.html
+//and opens the sketch.js with the Default text editor,
+//
+//NOTE i set my default text editor to open as SUBLIME text 3
+//
+function setup_project(projectName)
 {
+	var dir = projectName;
+
+
 	print(WELCOME_MESSAGE);
-
-	print("set_paths(dir):" + dir); 
-
-	SKETCH_NAME = `${dir}/sketch.js`;
- 	HTML_NAME = `${dir}/index.html`;
-	README_NAME = `${dir}/README.md`;
-	LIBRARY_FOLDER = `${dir}/lib`;
-	print(`${SKETCH_NAME}\n${HTML_NAME}\n${README_NAME}\n${LIBRARY_FOLDER}\n`);
+	console.log(`Project Name: ${console_input}`);
 
 
-	//makedirectory(LIBRARY_FOLDER);
-	mkdirp(dir.toString(), function(err) { 
-	    // path exists unless there was an error
-	    if(err){ return print(err);}
-	});
+	set_paths(projectName);
+	set_template(projectName);
+
 	print("Created Library Folder");
+	makedirectory(dir);
 
+	//downloads p5.js library and stores in the folder <PROJECTNAME>/lib
 	download(VERSION_P5JS, LIBRARY_FOLDER).then(() => {
 	    console.log('Download of P5.js library [DONE]');
 	});
@@ -120,19 +128,29 @@ function setup_project(dir)
 	open(SKETCH_NAME);
 }
 
+
+//make folders with subfolders
+//just like 
+//> mkdir -p 'path/to/folder' creates folders
+//'path', 'to', and 'folder'
 function makedirectory(foldername){
 	//make directory node.js
 	//http://stackoverflow.com/questions/13696148/ddg#13696975
-	mkdirp(foldername, function(err) { 
+	mkdirp(foldername.toString(), function(err) { 
 	    // path exists unless there was an error
 	    if(err){ return print(err);}
 	});
 
 }
-function file(filename, text,){
-	// Write file with nodejs
-	//http://www.daveeddy.com/2013/03/26/synchronous-file-io-in-nodejs/
-	//https://stackoverflow.com/questions/2496710/writing-files-in-node-js#2497040
+
+//wrapper function to write a file to 
+//the project directory with the contents of 'text'
+//	Notes
+//		Write file with nodejs
+//		http://www.daveeddy.com/2013/03/26/synchronous-file-io-in-nodejs/
+//		https://stackoverflow.com/questions/2496710/writing-files-in-node-js#2497040
+	
+function file(filename, text){
 	fs.writeFileSync( filename,  text, function(err){
 		if(err){
 			return print(err);
@@ -140,10 +158,26 @@ function file(filename, text,){
 	} );
 }
 
+//sets the location path's of the 
+//files im creating as part of the project
+//EX <projectName>/sketch.js
 function set_paths(dir){
+	
+	//print("set_paths(dir):" + dir);
+	SKETCH_NAME = `${dir}/${SKETCH_NAME}`;
+	HTML_NAME = `${dir}/${HTML_NAME}`;
+	README_NAME = `${dir}/${README_NAME}`;
+	LIBRARY_FOLDER = `${dir}/${LIBRARY_FOLDER}`;
+	
 }
 
-
+//creates default files for the p5.js project
+//sketch =  sketch.js is the first one, its just a default example code
+//			with some defaults i like
+//html   = index.html creates a html file that points to the downloaded 
+//			p5.js library within in the folder <PROJECTNAME>/lib
+//readme =  creates a default readme with the project name and date with some
+//			small formatting using markdown
 function set_template(projectName){
 sketch = `/*
 Name: ${projectName}
