@@ -24,13 +24,11 @@ TODO
 ----------------
 cli add flags
 cli add help flags
-
 180103
 xcli add change to create folder vs inside of new folder
-
 cli config file "username"
-
 unit testing
+http-server
 */
 
 
