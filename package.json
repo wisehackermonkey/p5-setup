@@ -1,6 +1,6 @@
 {
   "name": "p5-setup",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "make it easy to setup & run  p5.js  projects",
   "directories": {
     "lib": "lib"
