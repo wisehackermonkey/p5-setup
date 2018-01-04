@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
 p5.js setup application
 to insitalize a project without messing 
@@ -90,7 +92,7 @@ var html = `<html>
 `;
 
 var readme = `# ${name}
-## Author: ${Author}
+### Author: ${Author}
 Date: ${date}
 `;
 

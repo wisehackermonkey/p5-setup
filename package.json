@@ -8,8 +8,12 @@
   },
   "scripts": {
     "test": "node setup.js",
-    "setup": "node setup.js"
-
+    "setup": "node setup.js",
+    "launch": "node launch.js",
+    "r": "node launch.js"
+  },
+  "bin":{
+    "p5setup" : "./cli.js" 
   },
   "repository": {
     "type": "git",
@@ -28,6 +32,7 @@
   "author": "wisemonkey",
   "license": "ISC",
   "dependencies": {
+    "cli": "^1.0.1",
     "download": "^6.2.5",
     "mkdirp": "^0.5.1",
     "node-datetime": "^2.0.3",
