@@ -8,29 +8,30 @@ Purpose: make it easy to setup & run p5.js projects
 automates Opening up a default example code
 and a chrome tab
 ## Install 
- 
+
+First install the cli as global with sudo permissions(or just administrator windows) 
 ` 
 npm install -g p5-setup 
-![npm install -g p5-setup](https://i.imgur.com/MFDLbTH.png) 
-![installed correctly](https://i.imgur.com/1kDApmr.png) 
-` 
+`
 For use on Ubuntu or (gnu/linux) 
 ` 
 sudo install -g p5-setup 
-` 
+`
+![npm install -g p5-setup](https://i.imgur.com/MFDLbTH.png) 
+![installed correctly](https://i.imgur.com/1kDApmr.png) 
+ 
  
 ## Usage 
  
-Install `p5-setup`: 
+### Install `p5-setup`: 
  
 ` 
 >p5js <NAMEOFPROJECT> 
 or  
 >p5js 
 prompt: name: <NAMEOFPROJECT> 
-![p5js <NAMEOFPROJECT>](https://i.imgur.com/b05grQK.png) 
-
 ` 
+![p5js <NAMEOFPROJECT>](https://i.imgur.com/b05grQK.png) 
  
 #### Example 
 ` 
