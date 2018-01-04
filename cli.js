@@ -44,14 +44,16 @@ var dateTime = require('node-datetime');
 var dt = dateTime.create();
 var date = dt.format('Ymd');
 
+var project_dirname = "";
+
 //the username that shows up in comments of sketch.js,
 // and part of the readme.md 
-var Author = 'wisemonkey';
+var AUTHOR = 'wisemonkey';
 
 //name of the template files
-var sketch_name = 'sketch.js';
-var html_name = 'index.html';
-var readme_name = 'README.md';
+var SKETCH_NAME = 'sketch.js';
+var HTML_NAME = 'index.html';
+var README_NAME = 'README.md';
 
 var LIBRARY_FOLDER = 'lib';
 var VERSION_P5JS = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.js';
@@ -74,41 +76,60 @@ if(args.length === 0)
 	prompt.get(['name'], function (err, result) {
 		var projectName = result.name;
 
+		set_paths(projectName);
 		set_template(projectName);
-		setup_project();
+		setup_project(projectName);
 	});
 }else{
 	console.log(`Project Name: ${args}`);
-	
+	set_paths(args);
 	set_template(args);
-	setup_project();
+	setup_project(args);
 }
 
-function setup_project()
+function setup_project(dir)
 {
 	print(WELCOME_MESSAGE);
 
-	//make directory node.js
-	//http://stackoverflow.com/questions/13696148/ddg#13696975
-	mkdirp(LIBRARY_FOLDER, function(err) { 
+	print("set_paths(dir):" + dir); 
+
+	SKETCH_NAME = `${dir}/sketch.js`;
+ 	HTML_NAME = `${dir}/index.html`;
+	README_NAME = `${dir}/README.md`;
+	LIBRARY_FOLDER = `${dir}/lib`;
+	print(`${SKETCH_NAME}\n${HTML_NAME}\n${README_NAME}\n${LIBRARY_FOLDER}\n`);
+
+
+	//makedirectory(LIBRARY_FOLDER);
+	mkdirp(dir.toString(), function(err) { 
 	    // path exists unless there was an error
 	    if(err){ return print(err);}
 	});
+	print("Created Library Folder");
 
 	download(VERSION_P5JS, LIBRARY_FOLDER).then(() => {
 	    console.log('Download of P5.js library [DONE]');
 	});
 
-	file( readme, readme_name);//'README.md'
-	file( html  , html_name  );
-	file( sketch, sketch_name);
+	file( README_NAME,readme);//'README.md'
+	file( HTML_NAME,html);// html file
+	file( SKETCH_NAME,sketch);// p5.js code
 
-		open(html_name);
-		open(sketch_name);
+	//open a browser pointing at the p5.js sketch code
+	open(HTML_NAME);
+	open(SKETCH_NAME);
 }
 
+function makedirectory(foldername){
+	//make directory node.js
+	//http://stackoverflow.com/questions/13696148/ddg#13696975
+	mkdirp(foldername, function(err) { 
+	    // path exists unless there was an error
+	    if(err){ return print(err);}
+	});
 
-function file(text, filename){
+}
+function file(filename, text,){
 	// Write file with nodejs
 	//http://www.daveeddy.com/2013/03/26/synchronous-file-io-in-nodejs/
 	//https://stackoverflow.com/questions/2496710/writing-files-in-node-js#2497040
@@ -119,34 +140,14 @@ function file(text, filename){
 	} );
 }
 
-function dir_setup(LIBRARY_FOLDER,VERSION_P5JS, readme,html,html_name,sketch,sketch_name){
-
-	//make directory node.js
-	//http://stackoverflow.com/questions/13696148/ddg#13696975
-	mkdirp(LIBRARY_FOLDER, function(err) { 
-	    // path exists unless there was an error
-	    if(err){ return print(err);}
-	});
-
-
-	download(VERSION_P5JS, LIBRARY_FOLDER).then(() => {
-	    console.log('Download of P5.js library [DONE]');
-	});
-
-	file( readme, 'README.md');
-	file( html  , html_name  );
-	file( sketch, sketch_name);
-
-	open('sketch.js');
-	open('index.html');
+function set_paths(dir){
 }
-
 
 
 function set_template(projectName){
 sketch = `/*
 Name: ${projectName}
-Author: ${Author}
+Author: ${AUTHOR}
 Date: ${date}
 */
 function setup() {
@@ -170,7 +171,7 @@ html = `<html>
 `;
 
 readme = `# ${projectName}
-### Author: ${Author}
+### Author: ${AUTHOR}
 Date: ${date}
 `;
 }
