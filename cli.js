@@ -18,6 +18,16 @@ LINKs
 //https://stackoverflow.com/questions/17837147/user-input-in-node-js
 // https://www.npmjs.com/package/prompt
 --------------------
+
+
+TODO
+----------------
+cli add flags
+cli add help flags
+cli add change to create folder vs inside of new folder
+cli config file "username"
+
+unit testing
 */
 
 
@@ -34,9 +44,11 @@ var dateTime = require('node-datetime');
 var dt = dateTime.create();
 var date = dt.format('Ymd');
 
-
+//the username that shows up in comments of sketch.js,
+// and part of the readme.md 
 var Author = 'wisemonkey';
 
+//name of the template files
 var sketch_name = 'sketch.js';
 var html_name = 'index.html';
 var readme_name = 'README.md';

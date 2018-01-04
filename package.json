@@ -6,10 +6,9 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "node setup.js",
-    "setup": "node setup.js",
+    "test": "node cli.js",
     "launch": "node launch.js",
-    "r": "node launch.js"
+    "l": "node launch.js"
   },
   "preferGlobal": true,
   "bin": {
@@ -17,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "TODO"
+    "url": "https://github.com/wisehackermonkey/p5-setup"
   },
   "keywords": [
     "p5.js",
@@ -27,7 +26,8 @@
     "setup",
     "init",
     "web",
-    "framework"
+    "framework",
+    "javascript"
   ],
   "author": "wisemonkey",
   "license": "ISC",
@@ -39,5 +39,7 @@
     "opn": "^5.1.0",
     "prompt": "^1.0.0",
     "wise-helper": "^2.4.3"
-  }
+  },
+  "main": "cli.js",
+  "devDependencies": {}
 }
