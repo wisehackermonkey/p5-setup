@@ -2,7 +2,6 @@
   "name": "p5-setup",
   "version": "1.0.0",
   "description": "make it easy to setup & run  p5.js  projects",
-  "main": "setup.js",
   "directories": {
     "lib": "lib"
   },
@@ -12,8 +11,9 @@
     "launch": "node launch.js",
     "r": "node launch.js"
   },
-  "bin":{
-    "p5setup" : "./cli.js" 
+  "preferGlobal": true,
+  "bin": {
+    "p5js": "cli.js"
   },
   "repository": {
     "type": "git",

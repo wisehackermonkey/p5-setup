@@ -1,11 +1,35 @@
 #!/usr/bin/env node
+
+/*
+p5.js setup application
+to insitalize a project without messing 
+with terminal for each project
+AKA make it easy to setup & run  p5.js  projects
+from the terminal
+
+by wisemonkey
+180103
+--------------------
+LINKs
+
+// https://stackoverflow.com/questions/38182501/how-to-get-current-datetime-with-format-y-m-d-hms-using-node-datetime-library#38182551
+//https://www.npmjs.com/package/download
+//https://www.npmjs.com/package/prompt
+//https://stackoverflow.com/questions/17837147/user-input-in-node-js
+// https://www.npmjs.com/package/prompt
+--------------------
+*/
+
+
 require("wise-helper");
-var open = require('opn');
+
 var fs = require('fs');
-var download = require('download');
-var dateTime = require('node-datetime');
+var open = require('opn');
 var mkdirp = require('mkdirp');
 var prompt = require('prompt');
+var download = require('download');
+var dateTime = require('node-datetime');
+
 
 var dt = dateTime.create();
 var date = dt.format('Ymd');
@@ -91,6 +115,7 @@ function dir_setup(LIBRARY_FOLDER,VERSION_P5JS, readme,html,html_name,sketch,ske
 	    // path exists unless there was an error
 	    if(err){ return print(err);}
 	});
+
 
 	download(VERSION_P5JS, LIBRARY_FOLDER).then(() => {
 	    console.log('Download of P5.js library [DONE]');

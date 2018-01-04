@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js launch
+  /usr/bin/node /usr/share/yarn/bin/yarn.js install
 
 PATH: 
-  /home/tesla/miniconda3/bin:/home/tesla/.local/share/umake/bin:/home/tesla/bin:/home/tesla/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-9-oracle/bin:/usr/lib/jvm/java-9-oracle/db/bin
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
 
 Yarn version: 
   1.3.2
@@ -26,7 +26,12 @@ npm manifest:
       "test": "node setup.js",
       "setup": "node setup.js",
       "launch": "node launch.js",
+      "r": "node launch.js"
     },
+    "preferGlobal": true,
+    "bin": {
+      "p5setup": "cli.js"
+    }
     "repository": {
       "type": "git",
       "url": "TODO"
@@ -737,7 +742,7 @@ Lockfile:
       fd-slicer "~1.0.1"
 
 Trace: 
-  SyntaxError: /home/tesla/code/p5-setup/package.json: Unexpected token } in JSON at position 282
+  SyntaxError: /home/tesla/code/p5-setup/package.json: Unexpected string in JSON at position 376
       at JSON.parse (<anonymous>)
       at /usr/share/yarn/lib/cli.js:770:59
       at Generator.next (<anonymous>)
