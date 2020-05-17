@@ -11,13 +11,13 @@ and a chrome tab
 ## Install 
 
 First install the cli as global with sudo permissions(or just administrator windows) 
-` 
+```bash
 npm install -g p5-setup 
-`
+```
 For use on Ubuntu or (gnu/linux) 
-` 
+```bash
 sudo install -g p5-setup 
-`
+````
 ![npm install -g p5-setup](https://i.imgur.com/MFDLbTH.png) 
 ![installed correctly](https://i.imgur.com/1kDApmr.png) 
  
@@ -26,17 +26,18 @@ sudo install -g p5-setup
  
 ### Install `p5-setup`: 
  
-` 
+```bash 
 >p5js <NAMEOFPROJECT> 
 or  
 >p5js 
 prompt: name: <NAMEOFPROJECT> 
-` 
+```
 ![p5js <NAMEOFPROJECT>](https://i.imgur.com/b05grQK.png) 
  
 #### Example 
-` 
+```bash
 > cd ~/ 
 >p5js awesomeProject 
+```
 ![P5js](https://i.imgur.com/yVgtYvt.png)
-`
+
